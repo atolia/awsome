@@ -1,0 +1,12 @@
+body { background-color: black; font-size:20px; color:lightgray; font-family: Courier ; }
+a { text-decoration: none; color:green; }
+td { 
+  border-right: 1px solid gray; 
+  border-bottom: 1px solid gray; 
+}
+/* pre { font-size:20px; color:lightgray; } */
+table { font-size:20px; color:lightgray }
+.menu { background-color: darkgray; font-size: 25px; }
+.cursor { width: 18px;position: relative;top: 1px; }
+.red { color: red }
+.dark { color: darkgray; }
