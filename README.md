@@ -7,7 +7,7 @@ Since we have here a number of clusters and environments, I manage to build a li
 - docker image names
 - other docker tags pointing on the same checksum (work only with AWS docker registry)
 
-## How to run
+## How generate static html
 
 - modify config.yml
 - make sure your host is connected to kubernetes (check ~/.kube)
@@ -15,9 +15,17 @@ Since we have here a number of clusters and environments, I manage to build a li
 - pip3 install poetry
 - poetry install
 - poetry shell
-- ./fetch > out.json
-- ./render html.pug < out.json > status.html
+- ./fetch  out.json
+- ./render html.pug out.json status.html
 - open status.html
+
+## How to run server
+
+- ./server.sh 
+- open browser http://127.0.0.1:5500/
+- press Ctrl+C in terminal to quit
+- server automatically tell browser to refresh page when out.json changes
+- server.sh fetches out.json content from k8s clusters and resole docker tags every 20 seconds
 
 ## Screens
 
