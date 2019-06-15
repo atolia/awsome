@@ -91,8 +91,6 @@ def main():
       break
     repos[e] = [ item for item in res if 'imageTags' in item ]
 
-  # eprint( additional_tags ('caruso/market','044fa8fba1909b621a8391524cd4e2e9010e52f14d8b6eab46f1e8f6c3ff787f'))
-
   now=dt.utcnow()
   for name, con in kube.items():
     for ns in cfg['clusters'][name]['namespaces']:
