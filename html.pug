@@ -3,37 +3,22 @@ html(lang="en")
   head
     title 👨‍🍳 AWSome Cooking status
     link(rel='stylesheet' href='style.css')
-    meta(http-equiv="refresh" content="300")
-    script(type='text/javascript').
-      document.addEventListener('DOMContentLoaded', run);
-      function run() {
-        link_latest.style.background = 'black';
-        show(link_latest)
-      }
-      function show(arg) { 
-        arg.parentElement.innerText.split("|").forEach( function(element) {
-          el=element.trim()
-          if(el!="") {
-            document.getElementById(el).style.display="none"
-            document.getElementById('link_'+el).style.background = 'darkgray'
-          }
-        })
-        document.getElementById('link_'+arg.innerText).style.background = 'black'
-        document.getElementById(arg.innerText).style.display="block" 
-      }
+    meta(http-equiv="refresh" content="600")
+    meta(charset="UTF-8")
+    script(type='text/javascript' src='script.js')
   body
-    span.menu
-      each key,val in data.clusters.items()
-        //- = val.name
-        each ns in val.namespaces
-          a(href='#' onclick='show(this);return false;' id='link_#{ns}')= ns
+    span.menu#menu
+      each _,cluster in data.clusters.items()
+        //- = cluster.name
+        each ns in cluster.namespaces
+          a(href='#link_#{cluster.name}#{ns}' onclick='show(this);' id='link_#{cluster.name}#{ns}')= cluster.name + ':' + ns
           | |
     br/
     br/
     
     each cluster_name, cluster in data.clusters.items()
       each ns_name, ns in cluster.namespaces.items()
-        div(id=ns_name) Status of Stage: 
+        div(id=cluster.name+ns_name) Status of Stage: 
           a(href=ns.link, target='_blank') 
             b(style='color: green') #{ns_name}, Cluster: #{cluster_name}
           br/

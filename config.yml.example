@@ -1,0 +1,35 @@
+---
+clusters:
+# k8s context name 
+  mycluster.company.com:
+    name: DEV
+    namespaces:
+      # namespaces to check:
+      latest:
+      # some userfule links 
+        link: https://maybe-jenkins.company.com/mycluster/latest
+# another k8s context name to check 
+  another-cluster.company.com:
+    name: SAND
+    namespaces:
+      # namespaces to check:
+      generic:
+      # some userfule links 
+        link: https://maybe-jenkins.company.com/another-cluster/generic
+      integration:
+      # some userfule links 
+        link: https://maybe-jenkins.company.com/another-cluster/integration
+# another k8s context name to check 
+  production.company.com:
+    name: PROD
+    namespaces:
+      # namespaces to check:
+      pre:
+      # some userfule links 
+        link: https://maybe-jenkins.company.com/production/pre
+      prod:
+      # some userfule links 
+        link: https://maybe-jenkins.company.com/production/prod
+
+
+

@@ -43,6 +43,9 @@ def containers(pod, now):
   return ret
 
 def main():
+  if len(sys.argv) < 2 :
+    print( f'Usage: {sys.argv[0]} out.json\n')
+    exit(1);  
   with open("config.yml", 'r') as stream:
     try:
       cfg=yaml.safe_load(stream)
@@ -88,6 +91,7 @@ def main():
       break
     repos[e] = [ item for item in res if 'imageTags' in item ]
 
+  # eprint( additional_tags ('caruso/market','044fa8fba1909b621a8391524cd4e2e9010e52f14d8b6eab46f1e8f6c3ff787f'))
 
   now=dt.utcnow()
   for name, con in kube.items():
@@ -108,13 +112,14 @@ def main():
             imgs[c['image']['name']]=[i]    
       cfg['clusters'][name]['namespaces'][ns]['images']=imgs
 
-  print( json.dumps( { 'timestamp': now.strftime('%a %d %b %Y %H:%M UTC %Y'), 'clusters': cfg['clusters'] }, indent=2  ) )
+  # print( json.dumps( { 'timestamp': now.strftime('%a %d %b %Y %H:%M UTC %Y'), 'clusters': cfg['clusters'] }, indent=2  ) )
+  data = { 'timestamp': now.strftime('%a %d %b %Y %H:%M UTC %Y'), 'clusters': cfg['clusters'] }
+  with open(sys.argv[1], 'w', encoding='utf-8') as outfile:
+      json.dump(data, outfile, ensure_ascii=False, indent=2)
 
 
 if __name__ == '__main__':
   urllib3.disable_warnings()
   repos={}
   main()
-
-
 
